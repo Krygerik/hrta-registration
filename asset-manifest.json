@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/hrta-registration/static/css/main.6e365a5f.chunk.css",
+    "main.js": "/hrta-registration/static/js/main.ed23d784.chunk.js",
+    "main.js.map": "/hrta-registration/static/js/main.ed23d784.chunk.js.map",
+    "runtime-main.js": "/hrta-registration/static/js/runtime-main.db324a96.js",
+    "runtime-main.js.map": "/hrta-registration/static/js/runtime-main.db324a96.js.map",
+    "static/css/2.a0f34d99.chunk.css": "/hrta-registration/static/css/2.a0f34d99.chunk.css",
+    "static/js/2.788cdaa2.chunk.js": "/hrta-registration/static/js/2.788cdaa2.chunk.js",
+    "static/js/2.788cdaa2.chunk.js.map": "/hrta-registration/static/js/2.788cdaa2.chunk.js.map",
+    "index.html": "/hrta-registration/index.html",
+    "precache-manifest.039c6f18565fbb7e724f87b4fc3870f6.js": "/hrta-registration/precache-manifest.039c6f18565fbb7e724f87b4fc3870f6.js",
+    "service-worker.js": "/hrta-registration/service-worker.js",
+    "static/css/2.a0f34d99.chunk.css.map": "/hrta-registration/static/css/2.a0f34d99.chunk.css.map",
+    "static/css/main.6e365a5f.chunk.css.map": "/hrta-registration/static/css/main.6e365a5f.chunk.css.map",
+    "static/js/2.788cdaa2.chunk.js.LICENSE.txt": "/hrta-registration/static/js/2.788cdaa2.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/hrta-registration/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.db324a96.js",
+    "static/css/2.a0f34d99.chunk.css",
+    "static/js/2.788cdaa2.chunk.js",
+    "static/css/main.6e365a5f.chunk.css",
+    "static/js/main.ed23d784.chunk.js"
+  ]
+}
