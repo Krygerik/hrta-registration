@@ -8,12 +8,15 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "final-form": "^4.20.1",
+    "google-spreadsheet": "^3.0.13",
+    "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-final-form": "^6.5.1",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.0"
+    "semantic-ui-react": "^2.0.0",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
