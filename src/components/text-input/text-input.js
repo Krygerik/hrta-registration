@@ -1,6 +1,7 @@
 import * as React from "react";
 import {TextInputStyleWrapper} from "./text-input-styled";
 import {Global} from "../../classes";
+import {Field} from "react-final-form";
 
 export const CustomTextInput = React.memo((props) => {
   const {graphics} = Global.useContext();
@@ -16,12 +17,20 @@ export const CustomTextInput = React.memo((props) => {
   return (
     <TextInputStyleWrapper>
       <label>{props.label}</label>
-      <input
-        type="text"
-        onMouseOut={inputMouseOutHandler}
-        onMouseOver={inputMouseOverHandler}
-        autoComplete="nope"
-      />
+      <Field
+        {...props}
+      >
+        {
+          (inputProps) => (
+            <input
+              {...inputProps.input}
+              onMouseOut={inputMouseOutHandler}
+              onMouseOver={inputMouseOverHandler}
+              autoComplete="nope"
+            />
+          )
+        }
+      </Field>
     </TextInputStyleWrapper>
   );
 });

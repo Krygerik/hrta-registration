@@ -11,6 +11,8 @@ export const RegistrationController = React.memo((props) => {
       ...values,
       timeRegistration: moment().format('MMMM DD YYYY, hh:mm'),
     });
+
+    props.openSuccessModal();
   }
 
   const fileInputRef = React.createRef();
@@ -45,8 +47,9 @@ export const RegistrationController = React.memo((props) => {
     <Form
       onSubmit={handleSubmit}
       initialValues={initialValues}
-      render={() => (
+      render={(renderProps) => (
         <Registration
+          {...renderProps}
           fileInputRef={fileInputRef}
           handleClickUploadFile={handleClickUploadFile}
           handleClickHiddenUpload={handleClickHiddenUpload}
