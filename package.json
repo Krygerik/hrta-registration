@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "final-form": "^4.20.1",
     "google-spreadsheet": "^3.0.13",
+    "mobx": "^6.0.1",
+    "mobx-react": "^7.0.0",
     "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

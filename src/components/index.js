@@ -1,2 +1,5 @@
 export {TextInput} from './text-input';
-export {ExcelTable} from './excel-table';
+export {Registration} from './registration';
+export {Button} from './button';
+export {Cursor} from './cursor';
+

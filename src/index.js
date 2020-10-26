@@ -1,12 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './App';
-import 'semantic-ui-css/semantic.min.css'
-import './index.css';
+import {GlobalStyles} from './index-styled';
+import {Global} from './classes';
+import {Cursor} from "./components";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Global.Provider>
+      <GlobalStyles />
+      <Cursor />
+      <App />
+    </Global.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
