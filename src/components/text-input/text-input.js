@@ -20,7 +20,7 @@ export const CustomTextInput = React.memo((props) => {
         type="text"
         onMouseOut={inputMouseOutHandler}
         onMouseOver={inputMouseOverHandler}
-        autocomplete="nope"
+        autoComplete="nope"
       />
     </TextInputStyleWrapper>
   );

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import backgroundImage from './images/background.jpg';
 
 export const GlobalStyles = createGlobalStyle`
   body {
@@ -10,6 +11,10 @@ export const GlobalStyles = createGlobalStyle`
     z-index: 0;
     cursor: none;
     user-select: none;
+    background: no-repeat center url(${backgroundImage});
+    background-size: cover;
+    height: 100vh;
+    min-height: 676px;
   }
   
   * {
