@@ -7,7 +7,7 @@ import {BottomButtonsStyleWrapper} from "./registration-buttons-styled";
 
 export const Registration = React.memo((props) => (
   <RegistrationStyleWrapper>
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} autoComplete="off">
       <Grid centered>
         <Grid.Row>
           <h1>Регистрация на Рейтинговый турнир III/20</h1>

@@ -20,4 +20,8 @@ export const TextInputStyleWrapper = styled.div`
     text-align: center;
     font-size: 20px;
   }
+  
+  input: focus {
+    outline: none;
+  }
 `;
