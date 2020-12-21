@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
-import credential from './configs/secret-key.json';
-import {Registration, InfoModal} from "./components";
+import credential from '../../configs/secret-key.json';
+import {Registration, InfoModal} from "../../components";
 
 const doc = new GoogleSpreadsheet('1leRPa2Xo53Msw9CXu7x9Cnt-U0GxFsYYAN_GWnwUFUo');
 

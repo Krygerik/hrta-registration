@@ -25,6 +25,7 @@ export const SelectIcon = (props: TProps) => {
           {
             Object.values(EIcons).map((icon: TIcons) => (
               <Image
+                key={icon}
                 src={IconsPath[icon]}
                 onClick={() => {
                   props.changeIcon(icon);

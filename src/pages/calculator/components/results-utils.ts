@@ -24,10 +24,7 @@ export const getGoblinProbabilities = (goblinsN: number, targetN: number) => {
     negative: 25,
   };
 
-  if (goblinsN === targetN) {
-    return defaultProbability;
-  }
-
+  // TODO: Подумать над вариантом получше
   if (goblinsN > targetN) {
     const differencePoints = goblinsN - targetN;
 
@@ -88,4 +85,6 @@ export const getGoblinProbabilities = (goblinsN: number, targetN: number) => {
 
     return defaultProbability;
   }
+
+  return defaultProbability;
 }
