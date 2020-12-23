@@ -84,6 +84,14 @@ describe('getGoblinProbabilities', () => {
       negative: 5,
     })
   })
+  it('Гоблины опережают на 40 очков - максимальный положительный шанс', () => {
+    expect(getGoblinProbabilities(41, 2)).toEqual({
+      positive: 85,
+      semiPositive: 5,
+      semiNegative: 5,
+      negative: 5,
+    })
+  })
   it('Гоблины уступают на 1 очко', () => {
     expect(getGoblinProbabilities(1, 2)).toEqual({
       positive: 20,

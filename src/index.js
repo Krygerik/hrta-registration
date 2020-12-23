@@ -6,13 +6,11 @@ import {Calculator} from './pages/calculator';
 import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/registration" component={App}/>
-        <Route path="/calculator" component={Calculator}/>
-      </Switch>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/registration" component={App}/>
+      <Route path="/calculator" component={Calculator}/>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );

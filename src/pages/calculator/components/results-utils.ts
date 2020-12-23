@@ -43,7 +43,7 @@ export const getGoblinProbabilities = (goblinsN: number, targetN: number) => {
     if (differencePoints > 8 && differencePoints <= 12) {
       defaultProbability.semiPositive = defaultProbability.semiPositive - (5 * (differencePoints - 8));
     } else if (differencePoints > 12) {
-      defaultProbability.semiNegative = 5;
+      defaultProbability.semiPositive = 5;
     }
 
     if (differencePoints <= 12) {

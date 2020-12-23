@@ -12,7 +12,7 @@ export const Calculator = React.memo(() => {
   const [unit, setUnit] = React.useState(EIcons.GoblinTrapper);
   const [unitCount, setUnitCount] = React.useState(1);
   const [targetCount, setTargetCount] = React.useState(1);
-  const [target, setTarget] = React.useState(EIcons.GoblinShaman);
+  const [target, setTarget] = React.useState(EIcons.GoblinTrapper);
 
   return (
     <CalculatorMain>
@@ -23,6 +23,7 @@ export const Calculator = React.memo(() => {
         <SelectIcon
           changeIcon={setUnit}
           icon={unit}
+          onlyGoblin
         />
         <TextInput
           onChange={(event) => setUnitCount(Number(event.target.value))}
