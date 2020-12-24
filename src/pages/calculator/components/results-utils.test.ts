@@ -1,4 +1,4 @@
-import {getGoblinProbabilities, getGoblinsN, getTargetN} from "./results-utils";
+import {getGoblinProbabilities, getGoblinsN, getHeroN, getTargetN} from "./results-utils";
 
 describe('getGoblinsN', () => {
   it('Ноль гоблинов дают 1 очко сравнения', () => {
@@ -132,4 +132,10 @@ describe('getGoblinProbabilities', () => {
       negative: 85,
     })
   })
+})
+
+describe('getHeroN', () => {
+  it('Герой 18 лвла кастует ускорение', () => {
+    expect(getHeroN(18, 1)).toBe(19);
+  });
 })

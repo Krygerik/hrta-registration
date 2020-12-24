@@ -14,6 +14,13 @@ export const getTargetN = (level: number, rank: number, count: number, weeklyGro
 }
 
 /**
+ * Получение очков сравнения героя, на которое направлено проклятие
+ */
+export const getHeroN = (heroLevel: number, castLevel: number): number => {
+  return heroLevel + castLevel;
+}
+
+/**
  * Получение вероятностей срабатывания гоблинских проклятий
  */
 export const getGoblinProbabilities = (goblinsN: number, targetN: number) => {

@@ -1,18 +1,21 @@
 import * as React from 'react';
 import {SelectIcon} from "./components/select-icon";
-import {EIcons} from "./calculator-constants";
+import {CreaturesProperties, EEntities} from "./calculator-constants";
 import {Results} from "./components/results";
-import { TextInput } from '../../components/text-input';
+import {TextInput} from '../../components/text-input';
 import {CalculatorColumn, CalculatorMain} from "./calculator-styled";
 
 /**
  * Контроллер калькулятора
  */
 export const Calculator = React.memo(() => {
-  const [unit, setUnit] = React.useState(EIcons.GoblinTrapper);
+  const [unit, setUnit] = React.useState(EEntities.GoblinTrapper);
   const [unitCount, setUnitCount] = React.useState(1);
   const [targetCount, setTargetCount] = React.useState(1);
-  const [target, setTarget] = React.useState(EIcons.GoblinTrapper);
+  const [target, setTarget] = React.useState(EEntities.GoblinTrapper);
+
+  const [levelHero, setLevelHero] = React.useState(18);
+  const [levelCast, setLevelCast] = React.useState(1);
 
   return (
     <CalculatorMain>
@@ -23,7 +26,7 @@ export const Calculator = React.memo(() => {
         <SelectIcon
           changeIcon={setUnit}
           icon={unit}
-          onlyGoblin
+          isUnit={true}
         />
         <TextInput
           onChange={(event) => setUnitCount(Number(event.target.value))}
@@ -39,6 +42,8 @@ export const Calculator = React.memo(() => {
           targetCount={targetCount}
           unit={unit}
           unitCount={unitCount}
+          levelHero={levelHero}
+          levelCast={levelCast}
         />
       </CalculatorColumn>
       <CalculatorColumn
@@ -49,11 +54,30 @@ export const Calculator = React.memo(() => {
           changeIcon={setTarget}
           icon={target}
         />
-        <TextInput
-          onChange={(event) => setTargetCount(Number(event.target.value))}
-          placeholder="Количество"
-          type="number"
-        />
+        {
+          CreaturesProperties[target].isHero
+            ? (
+              <>
+                <TextInput
+                  onChange={(event) => setLevelHero(Number(event.target.value))}
+                  placeholder="Уровень героя"
+                  type="number"
+                />
+                <TextInput
+                  onChange={(event) => setLevelCast(Number(event.target.value))}
+                  placeholder="Уровень заклинания"
+                  type="number"
+                />
+              </>
+            )
+            : (
+              <TextInput
+                onChange={(event) => setTargetCount(Number(event.target.value))}
+                placeholder="Количество"
+                type="number"
+              />
+            )
+        }
       </CalculatorColumn>
     </CalculatorMain>
   );
