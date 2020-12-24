@@ -15,6 +15,7 @@ type TProps = {
   changeIcon: any;
   icon: TEntitiesKeys;
   isUnit?: boolean;
+  unit: TEntitiesKeys;
 };
 
 /**
@@ -34,30 +35,61 @@ export const SelectIcon = (props: TProps) => {
    * Получение списка существ 2 грейда всех фракций (Включая героев и нейтральных)
    */
   const getAllEntityList = (): TEntitiesKeys[][] => {
-    /**
-     * Собираем массив характеристик для всех существ 2 тира (Актуально, если добавлены только Орки)
-     */
-    const allPropsTier2: Array<TAllEntityProps> = filter(
-      CreaturesProperties,
-      (value: TAllEntityProps) => !value.isHero && value[ECreaturesProperties.Tier] === 2,
-    );
+    const allEntityList = [];
 
     /**
-     * Формирует из массива характеристик, массив ключей все существ 2 тира
+     * Гоблин шаман имеет возможность применять заклинания на героев
      */
-    const allKeysTier2: Array<TEntitiesKeys> = map(
-      allPropsTier2,
-      (value: TAllEntityProps) => value[ECreaturesProperties.Key],
-    );
+    if (props.unit === EEntities.GoblinShaman) {
+      allEntityList.push([EEntities.Ora]);
 
-    return [
-      // Сначала список героев
-      [EEntities.Ora],
-      // Списки существ всех фракций
-      allKeysTier2,
-      // Список нейтральных существ
-      // TODO
-    ];
+      /**
+       * Собираем массив характеристик для всех существ-колдунов 2 тира
+       */
+      const allWizardsProps: Array<TAllEntityProps> = filter(
+        CreaturesProperties,
+        (value: TAllEntityProps) => !value.isHero && value[ECreaturesProperties.Wizard] === true,
+      );
+
+      /**
+       * Формирует из массива характеристик, массив ключей все существ 2 тира
+       */
+      const allWizardsKeysTier2: Array<TEntitiesKeys> = map(
+        allWizardsProps,
+        (value: TAllEntityProps) => value[ECreaturesProperties.Key],
+      );
+
+      allEntityList.push(allWizardsKeysTier2);
+    }
+
+    /**
+     * Траппер может действовать на всех нелетающих существ
+     */
+    if (props.unit === EEntities.GoblinTrapper) {
+      /**
+       * Собираем массив характеристик для всех существ 2 тира (Актуально, если добавлены только Орки)
+       */
+      const allPropsTier2: Array<TAllEntityProps> = filter(
+        CreaturesProperties,
+        (value: TAllEntityProps) => (
+          !value.isHero
+          && value[ECreaturesProperties.Tier] === 2
+          && value[ECreaturesProperties.Flying] !== true
+        ),
+      );
+
+      /**
+       * Формирует из массива характеристик, массив ключей все существ 2 тира
+       */
+      const allKeysTier2: Array<TEntitiesKeys> = map(
+        allPropsTier2,
+        (value: TAllEntityProps) => value[ECreaturesProperties.Key],
+      );
+
+      allEntityList.push(allKeysTier2);
+    }
+
+    return allEntityList;
   }
 
   /**

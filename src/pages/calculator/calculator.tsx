@@ -27,6 +27,7 @@ export const Calculator = React.memo(() => {
           changeIcon={setUnit}
           icon={unit}
           isUnit={true}
+          unit={unit}
         />
         <TextInput
           onChange={(event) => setUnitCount(Number(event.target.value))}
@@ -53,6 +54,7 @@ export const Calculator = React.memo(() => {
         <SelectIcon
           changeIcon={setTarget}
           icon={target}
+          unit={unit}
         />
         {
           CreaturesProperties[target].isHero

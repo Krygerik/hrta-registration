@@ -61,6 +61,10 @@ export enum ECreaturesProperties {
   isHero="isHero",
   // Иконка
   Icon="Icon",
+  // Колдун,
+  Wizard="Wizard",
+  // Летающий
+  Flying="Flying",
 }
 
 /**
@@ -83,6 +87,8 @@ type TCreaturesProps = {
   [ECreaturesProperties.Tier]: number;
   [ECreaturesProperties.isHero]?: boolean;
   [ECreaturesProperties.Icon]: string;
+  [ECreaturesProperties.Wizard]?: boolean;
+  [ECreaturesProperties.Flying]?: boolean;
 };
 
 /**
@@ -135,6 +141,7 @@ export const CreaturesProperties: TCreaturesProperties = {
     [ECreaturesProperties.WeeklyGrow]: 5,
     [ECreaturesProperties.Tier]: 2,
     [ECreaturesProperties.Icon]: DaughtersOfHeaven,
+    [ECreaturesProperties.Wizard]: true,
   },
   [EEntities.Executioner]: {
     [ECreaturesProperties.Key]: EEntities.Executioner,
@@ -151,6 +158,7 @@ export const CreaturesProperties: TCreaturesProperties = {
     [ECreaturesProperties.WeeklyGrow]: 2,
     [ECreaturesProperties.Tier]: 2,
     [ECreaturesProperties.Icon]: Wyvern,
+    [ECreaturesProperties.Flying]: true,
   },
   [EEntities.Cyclops]: {
     [ECreaturesProperties.Key]: EEntities.Cyclops,
