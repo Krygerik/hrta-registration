@@ -1,11 +1,11 @@
 import GoblinTrapper from '../../assets/goblin-trapper-icon.png';
 import GoblinShaman from '../../assets/goblin-shaman-icon.png';
 import NomadCentaur from '../../assets/nomad-centaur.png';
-import Warmonger from '../../assets/varmounger.png';
-import DaughtersOfHeaven from '../../assets/docher-neba.png';
-import Executioner from '../../assets/palach.png';
-import Wyvern from '../../assets/viverna.png';
-import Cyclops from '../../assets/ciklop.png';
+import Warmonger from '../../assets/warmonger.png';
+import DaughtersOfHeaven from '../../assets/daughter-of-heaven.png';
+import Executioner from '../../assets/executioner.png';
+import Wyvern from '../../assets/wyvern.png';
+import Cyclops from '../../assets/ciclops.png';
 import Ora from '../../assets/ora.png';
 
 /**
