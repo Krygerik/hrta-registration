@@ -1,10 +1,10 @@
 import * as React from "react";
-import {CreaturesProperties, EEntities} from "../calculator-constants";
+import {EEntities, EHeroes, heroAndCreaturesProps} from "../calculator-constants";
 import {getGoblinProbabilities, getGoblinsN, getHeroN, getTargetN} from "./results-utils";
 import {Error, ResultMain} from "./result-styled";
 
 type TProps = {
-  target: EEntities;
+  target: EEntities | EHeroes;
   targetCount: number;
   unit: EEntities;
   unitCount: number;
@@ -27,7 +27,7 @@ export const Results = React.memo((props: TProps) => {
   /**
    * Свойства цели
    */
-  const targetProperty = CreaturesProperties[props.target];
+  const targetProperty = heroAndCreaturesProps[props.target];
 
   /**
    * Очки сравнения гоблинов

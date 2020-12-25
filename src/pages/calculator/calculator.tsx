@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {SelectIcon} from "./components/select-icon";
-import {CreaturesProperties, EEntities} from "./calculator-constants";
+import {EEntities, EHeroes} from "./calculator-constants";
 import {Results} from "./components/results";
 import {TextInput} from '../../components/text-input';
 import {CalculatorColumn, CalculatorMain} from "./calculator-styled";
@@ -57,7 +57,7 @@ export const Calculator = React.memo(() => {
           unit={unit}
         />
         {
-          CreaturesProperties[target].isHero
+          target in EHeroes
             ? (
               <>
                 <TextInput

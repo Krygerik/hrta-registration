@@ -1,21 +1,24 @@
 import * as React from 'react';
-import {filter, map } from 'lodash';
+import {filter, flow, forEach, map} from 'lodash';
 import {Image, Modal} from "semantic-ui-react";
 import {
   CreaturesProperties,
   ECreaturesProperties,
   EEntities,
-  TAllEntityProps,
-  TEntitiesKeys,
+  EFraction,
+  EHeroes,
+  EHeroesProps,
+  heroAndCreaturesProps,
+  TCreaturesProps,
   UNITS_CAN_USE_SPECIAL_ABILITIES
 } from "../calculator-constants";
 import {AllFractionTierList, OneTierEntitiesList} from "./select-icon-styled";
 
 type TProps = {
   changeIcon: any;
-  icon: TEntitiesKeys;
+  icon: EEntities | EHeroes;
   isUnit?: boolean;
-  unit: TEntitiesKeys;
+  unit: EEntities;
 };
 
 /**
@@ -29,64 +32,92 @@ export const SelectIcon = (props: TProps) => {
    */
   const handleClickIcon = () => {
     setOpen(true)
-  }
+  };
+
+  /**
+   * Получение списка всех сущетсв фракции
+   */
+  const getAllUnitsListByFraction = (fraction: EFraction): TCreaturesProps[] => filter(
+    Object.values(CreaturesProperties),
+    { [ECreaturesProperties.Fraction]: fraction},
+  );
+
+  /**
+   * Исключение существ всех тиров, кроме 2
+   */
+  const filterNotTier2Units = (entityList: TCreaturesProps[]): TCreaturesProps[] => filter(
+    entityList,
+    { [ECreaturesProperties.Tier]: 2},
+  );
+
+  /**
+   * Исключает летающих юнитов из коллекции
+   */
+  const filterFlyingUnits = (entityList: TCreaturesProps[]): TCreaturesProps[] => filter(
+    entityList,
+    (value: TCreaturesProps) => value[ECreaturesProperties.Flying] !== true,
+  );
+
+  /**
+   * Фильтр летающих юнитов
+   */
+  const filterNotWizardUnits = (entityList: TCreaturesProps[]): TCreaturesProps[] => filter(
+    entityList,
+    { [ECreaturesProperties.Wizard]: true },
+  );
+
+  /**
+   * Получение списка ключей из списка свойств
+   */
+  const getKeyListFromPropsList = (propList: TCreaturesProps[]): EEntities[] => map(
+    propList,
+    (props) => props[ECreaturesProperties.Key]
+  );
 
   /**
    * Получение списка существ 2 грейда всех фракций (Включая героев и нейтральных)
    */
-  const getAllEntityList = (): TEntitiesKeys[][] => {
+  const getAllEntityList = (): (EEntities | EHeroes)[][] => {
     const allEntityList = [];
 
     /**
      * Гоблин шаман имеет возможность применять заклинания на героев
      */
     if (props.unit === EEntities.GoblinShaman) {
-      allEntityList.push([EEntities.Ora]);
+      allEntityList.push([EHeroes.Ora]);
 
-      /**
-       * Собираем массив характеристик для всех существ-колдунов 2 тира
-       */
-      const allWizardsProps: Array<TAllEntityProps> = filter(
-        CreaturesProperties,
-        (value: TAllEntityProps) => !value.isHero && value[ECreaturesProperties.Wizard] === true,
+      forEach(
+        Object.values(EFraction),
+        fraction => (
+          allEntityList.push(
+            flow([
+              getAllUnitsListByFraction,
+              filterNotTier2Units,
+              filterNotWizardUnits,
+              getKeyListFromPropsList,
+            ])(fraction)
+          )
+        )
       );
-
-      /**
-       * Формирует из массива характеристик, массив ключей все существ 2 тира
-       */
-      const allWizardsKeysTier2: Array<TEntitiesKeys> = map(
-        allWizardsProps,
-        (value: TAllEntityProps) => value[ECreaturesProperties.Key],
-      );
-
-      allEntityList.push(allWizardsKeysTier2);
     }
 
     /**
      * Траппер может действовать на всех нелетающих существ
      */
     if (props.unit === EEntities.GoblinTrapper) {
-      /**
-       * Собираем массив характеристик для всех существ 2 тира (Актуально, если добавлены только Орки)
-       */
-      const allPropsTier2: Array<TAllEntityProps> = filter(
-        CreaturesProperties,
-        (value: TAllEntityProps) => (
-          !value.isHero
-          && value[ECreaturesProperties.Tier] === 2
-          && value[ECreaturesProperties.Flying] !== true
-        ),
-      );
-
-      /**
-       * Формирует из массива характеристик, массив ключей все существ 2 тира
-       */
-      const allKeysTier2: Array<TEntitiesKeys> = map(
-        allPropsTier2,
-        (value: TAllEntityProps) => value[ECreaturesProperties.Key],
-      );
-
-      allEntityList.push(allKeysTier2);
+      forEach(
+        Object.values(EFraction),
+        fraction => (
+          allEntityList.push(
+            flow([
+              getAllUnitsListByFraction,
+              filterNotTier2Units,
+              filterFlyingUnits,
+              getKeyListFromPropsList,
+            ])(fraction)
+          )
+        )
+      )
     }
 
     return allEntityList;
@@ -102,7 +133,7 @@ export const SelectIcon = (props: TProps) => {
   return (
     <>
       <Image
-        src={CreaturesProperties[props.icon][ECreaturesProperties.Icon]}
+        src={heroAndCreaturesProps[props.icon][EHeroesProps.Icon]}
         onClick={handleClickIcon}
       />
       <Modal
@@ -112,13 +143,13 @@ export const SelectIcon = (props: TProps) => {
       >
         <AllFractionTierList>
           {
-            map(allFractionsUnitsKeysList, (fractionUnitsKeysList: TEntitiesKeys[], index: number) => (
+            map(allFractionsUnitsKeysList, (fractionUnitsKeysList: (EHeroes | EEntities)[], index: number) => (
               <OneTierEntitiesList key={index}>
                 {
-                  map(fractionUnitsKeysList, (unitKey: TEntitiesKeys) => (
+                  map(fractionUnitsKeysList, (unitKey: EHeroes | EEntities) => (
                     <Image
                       key={unitKey}
-                      src={CreaturesProperties[unitKey][ECreaturesProperties.Icon]}
+                      src={heroAndCreaturesProps[unitKey][ECreaturesProperties.Icon]}
                       onClick={() => {
                         props.changeIcon(unitKey);
                         setOpen(false);
