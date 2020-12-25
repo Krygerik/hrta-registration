@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hrta-registration/precache-manifest.9a7260765924059e39e854f095d234f6.js"
+  "/hrta-registration/precache-manifest.2a5d5497a825d9ea034639cd78ce1053.js"
 );
 
 self.addEventListener('message', (event) => {
